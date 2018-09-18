@@ -15,11 +15,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/btcsuite/btcutil"
-	"github.com/btcsuite/btcwallet/internal/cfgutil"
-	"github.com/btcsuite/btcwallet/internal/legacy/keystore"
-	"github.com/btcsuite/btcwallet/netparams"
-	"github.com/btcsuite/btcwallet/wallet"
+	"github.com/coinsuite/btcutil"
+	"github.com/coinsuite/coinwallet/internal/cfgutil"
+	"github.com/coinsuite/coinwallet/internal/legacy/keystore"
+	"github.com/coinsuite/coinwallet/netparams"
+	"github.com/coinsuite/coinwallet/wallet"
 	flags "github.com/jessevdk/go-flags"
 	"github.com/lightninglabs/neutrino"
 )
