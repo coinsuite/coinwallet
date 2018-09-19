@@ -478,11 +478,11 @@ func (net *netParams) ReadFrom(r io.Reader) (int64, error) {
 
 	switch wire.BitcoinNet(binary.LittleEndian.Uint32(uint32Bytes)) {
 	case wire.MainNet:
-		*net = (netParams)(chaincfg.MainNetParams)
+		*net = (netParams)(*chaincfg.GetMainNet())
 	case wire.TestNet3:
-		*net = (netParams)(chaincfg.TestNet3Params)
+		*net = (netParams)(*chaincfg.GetTestNet())
 	case wire.SimNet:
-		*net = (netParams)(chaincfg.SimNetParams)
+		*net = (netParams)(*chaincfg.GetSimNet())
 	default:
 		return n64, errors.New("unknown network")
 	}

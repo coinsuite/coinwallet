@@ -320,12 +320,12 @@ func (c *BitcoindConn) getCurrentNet() (wire.BitcoinNet, error) {
 	}
 
 	switch *hash {
-	case *chaincfg.TestNet3Params.GenesisHash:
-		return chaincfg.TestNet3Params.Net, nil
-	case *chaincfg.RegressionNetParams.GenesisHash:
-		return chaincfg.RegressionNetParams.Net, nil
-	case *chaincfg.MainNetParams.GenesisHash:
-		return chaincfg.MainNetParams.Net, nil
+	case *chaincfg.GetTestNet().GenesisHash:
+		return chaincfg.GetTestNet().Net, nil
+	case *chaincfg.GetRegressionNet().GenesisHash:
+		return chaincfg.GetRegressionNet().Net, nil
+	case *chaincfg.GetMainNet().GenesisHash:
+		return chaincfg.GetMainNet().Net, nil
 	default:
 		return 0, fmt.Errorf("unknown network with genesis hash %v", hash)
 	}
