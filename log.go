@@ -17,8 +17,8 @@ import (
 	"github.com/coinsuite/coinwallet/rpc/rpcserver"
 	"github.com/coinsuite/coinwallet/wallet"
 	"github.com/coinsuite/coinwallet/wtxmgr"
+	"github.com/coinsuite/neutrino"
 	"github.com/jrick/logrotate/rotator"
-	"github.com/lightninglabs/neutrino"
 )
 
 // logWriter implements an io.Writer that outputs to both standard output and

@@ -16,7 +16,7 @@ import (
 	"github.com/coinsuite/coind/wire"
 	"github.com/coinsuite/coinwallet/waddrmgr"
 	"github.com/coinsuite/coinwallet/wtxmgr"
-	"github.com/lightninglabs/neutrino"
+	"github.com/coinsuite/neutrino"
 )
 
 // NeutrinoClient is an implementation of the btcwalet chain.Interface interface.
