@@ -18,7 +18,7 @@ import (
 	"github.com/coinsuite/coinwallet/rpc/legacyrpc"
 	"github.com/coinsuite/coinwallet/wallet"
 	"github.com/coinsuite/coinwallet/walletdb"
-	"github.com/lightninglabs/neutrino"
+	"github.com/coinsuite/neutrino"
 )
 
 var (

@@ -22,8 +22,8 @@ import (
 	"github.com/coinsuite/coinwallet/internal/legacy/keystore"
 	"github.com/coinsuite/coinwallet/netparams"
 	"github.com/coinsuite/coinwallet/wallet"
+	"github.com/coinsuite/neutrino"
 	flags "github.com/jessevdk/go-flags"
-	"github.com/lightninglabs/neutrino"
 )
 
 const (
