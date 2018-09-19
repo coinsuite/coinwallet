@@ -18,7 +18,7 @@ import:
   subpackages:
   - hdkeychain
 - package: github.com/coinsuite/neutrino
-  version: 43d5dbef2e5369ecd2ac582736ca5c541b461749
+  version: 822ee2a033cda9a5db6b8861492cb88e2157e350
 - package: github.com/btcsuite/golangcrypto
   subpackages:
   - nacl/secretbox

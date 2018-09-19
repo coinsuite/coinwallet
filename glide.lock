@@ -1,5 +1,5 @@
-hash: 6fe7f39f139366dafd5e2b8f20a7717a9cf43292f0debebfcaecc418f2efc16b
-updated: 2018-09-19T15:26:35.050545+07:00
+hash: d2d5e6512c89a9afdb7b7d877fe012d33aff44d136ac8b6d967f684f70218410
+updated: 2018-09-19T15:33:45.6007+07:00
 imports:
 - name: github.com/aead/siphash
   version: 83563a290f60225eb120d724600b9690c3fb536f
@@ -47,7 +47,7 @@ imports:
   - txscript
   - wire
 - name: github.com/coinsuite/neutrino
-  version: 43d5dbef2e5369ecd2ac582736ca5c541b461749
+  version: 822ee2a033cda9a5db6b8861492cb88e2157e350
   subpackages:
   - cache
   - cache/lru
