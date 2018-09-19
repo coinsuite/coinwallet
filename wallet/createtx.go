@@ -9,14 +9,14 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/btcsuite/btcd/btcec"
-	"github.com/btcsuite/btcd/txscript"
-	"github.com/btcsuite/btcd/wire"
-	"github.com/btcsuite/btcutil"
-	"github.com/btcsuite/btcwallet/waddrmgr"
-	"github.com/btcsuite/btcwallet/wallet/txauthor"
-	"github.com/btcsuite/btcwallet/walletdb"
-	"github.com/btcsuite/btcwallet/wtxmgr"
+	"github.com/coinsuite/btcutil"
+	"github.com/coinsuite/coind/btcec"
+	"github.com/coinsuite/coind/txscript"
+	"github.com/coinsuite/coind/wire"
+	"github.com/coinsuite/coinwallet/waddrmgr"
+	"github.com/coinsuite/coinwallet/wallet/txauthor"
+	"github.com/coinsuite/coinwallet/walletdb"
+	"github.com/coinsuite/coinwallet/wtxmgr"
 )
 
 // byAmount defines the methods needed to satisify sort.Interface to

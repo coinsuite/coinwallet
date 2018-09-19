@@ -19,10 +19,10 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/btcsuite/btcd/btcjson"
-	"github.com/btcsuite/btcwallet/chain"
-	"github.com/btcsuite/btcwallet/wallet"
 	"github.com/btcsuite/websocket"
+	"github.com/coinsuite/coind/btcjson"
+	"github.com/coinsuite/coinwallet/chain"
+	"github.com/coinsuite/coinwallet/wallet"
 )
 
 type websocketClient struct {

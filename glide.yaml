@@ -1,9 +1,9 @@
-package: github.com/btcsuite/btcwallet
+package: github.com/coinsuite/coinwallet
 import:
 - package: github.com/coreos/bbolt
   version: 4f5275f4ebbf6fe7cb772de987fa96ee674460a7
-- package: github.com/btcsuite/btcd
-  version: d81d8877b8f327112e94e814937143a71d1692a7
+- package: github.com/coinsuite/coind
+  version: 8a52aca9072e23dfabf563c94562945334a961f6
   subpackages:
   - blockchain
   - btcec
@@ -13,8 +13,8 @@ import:
   - txscript
   - wire
 - package: github.com/btcsuite/btclog
-- package: github.com/btcsuite/btcutil
-  version: ab6388e0c60ae4834a1f57511e20c17b5f78be4b
+- package: github.com/coinsuite/btcutil
+  version: 84a90c4086eccdf11494a3cb84fd19dbab2f09df
   subpackages:
   - hdkeychain
 - package: github.com/lightninglabs/neutrino

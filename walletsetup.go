@@ -11,16 +11,16 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/btcsuite/btcd/btcec"
-	"github.com/btcsuite/btcd/chaincfg"
-	"github.com/btcsuite/btcd/wire"
-	"github.com/btcsuite/btcutil"
-	"github.com/btcsuite/btcwallet/internal/legacy/keystore"
-	"github.com/btcsuite/btcwallet/internal/prompt"
-	"github.com/btcsuite/btcwallet/waddrmgr"
-	"github.com/btcsuite/btcwallet/wallet"
-	"github.com/btcsuite/btcwallet/walletdb"
-	_ "github.com/btcsuite/btcwallet/walletdb/bdb"
+	"github.com/coinsuite/btcutil"
+	"github.com/coinsuite/coind/btcec"
+	"github.com/coinsuite/coind/chaincfg"
+	"github.com/coinsuite/coind/wire"
+	"github.com/coinsuite/coinwallet/internal/legacy/keystore"
+	"github.com/coinsuite/coinwallet/internal/prompt"
+	"github.com/coinsuite/coinwallet/waddrmgr"
+	"github.com/coinsuite/coinwallet/wallet"
+	"github.com/coinsuite/coinwallet/walletdb"
+	_ "github.com/coinsuite/coinwallet/walletdb/bdb"
 )
 
 // networkDir returns the directory name of a network directory to hold wallet

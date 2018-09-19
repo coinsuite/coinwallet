@@ -8,10 +8,10 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/btcsuite/btcd/chaincfg"
-	"github.com/btcsuite/btcd/chaincfg/chainhash"
-	"github.com/btcsuite/btcd/rpcclient"
-	"github.com/btcsuite/btcd/wire"
+	"github.com/coinsuite/coind/chaincfg"
+	"github.com/coinsuite/coind/chaincfg/chainhash"
+	"github.com/coinsuite/coind/rpcclient"
+	"github.com/coinsuite/coind/wire"
 	"github.com/lightninglabs/gozmq"
 )
 
@@ -320,12 +320,12 @@ func (c *BitcoindConn) getCurrentNet() (wire.BitcoinNet, error) {
 	}
 
 	switch *hash {
-	case *chaincfg.TestNet3Params.GenesisHash:
-		return chaincfg.TestNet3Params.Net, nil
-	case *chaincfg.RegressionNetParams.GenesisHash:
-		return chaincfg.RegressionNetParams.Net, nil
-	case *chaincfg.MainNetParams.GenesisHash:
-		return chaincfg.MainNetParams.Net, nil
+	case *chaincfg.GetTestNet().GenesisHash:
+		return chaincfg.GetTestNet().Net, nil
+	case *chaincfg.GetRegressionNet().GenesisHash:
+		return chaincfg.GetRegressionNet().Net, nil
+	case *chaincfg.GetMainNet().GenesisHash:
+		return chaincfg.GetMainNet().Net, nil
 	default:
 		return 0, fmt.Errorf("unknown network with genesis hash %v", hash)
 	}

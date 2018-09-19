@@ -24,13 +24,13 @@ import (
 
 	"golang.org/x/crypto/ripemd160"
 
-	"github.com/btcsuite/btcd/btcec"
-	"github.com/btcsuite/btcd/chaincfg"
-	"github.com/btcsuite/btcd/chaincfg/chainhash"
-	"github.com/btcsuite/btcd/txscript"
-	"github.com/btcsuite/btcd/wire"
-	"github.com/btcsuite/btcutil"
-	"github.com/btcsuite/btcwallet/internal/legacy/rename"
+	"github.com/coinsuite/btcutil"
+	"github.com/coinsuite/coind/btcec"
+	"github.com/coinsuite/coind/chaincfg"
+	"github.com/coinsuite/coind/chaincfg/chainhash"
+	"github.com/coinsuite/coind/txscript"
+	"github.com/coinsuite/coind/wire"
+	"github.com/coinsuite/coinwallet/internal/legacy/rename"
 )
 
 const (
@@ -478,11 +478,11 @@ func (net *netParams) ReadFrom(r io.Reader) (int64, error) {
 
 	switch wire.BitcoinNet(binary.LittleEndian.Uint32(uint32Bytes)) {
 	case wire.MainNet:
-		*net = (netParams)(chaincfg.MainNetParams)
+		*net = (netParams)(*chaincfg.GetMainNet())
 	case wire.TestNet3:
-		*net = (netParams)(chaincfg.TestNet3Params)
+		*net = (netParams)(*chaincfg.GetTestNet())
 	case wire.SimNet:
-		*net = (netParams)(chaincfg.SimNetParams)
+		*net = (netParams)(*chaincfg.GetSimNet())
 	default:
 		return n64, errors.New("unknown network")
 	}

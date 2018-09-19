@@ -6,9 +6,9 @@
 package wallet
 
 import (
-	"github.com/btcsuite/btcd/txscript"
-	"github.com/btcsuite/btcd/wire"
-	"github.com/btcsuite/btcwallet/walletdb"
+	"github.com/coinsuite/coind/txscript"
+	"github.com/coinsuite/coind/wire"
+	"github.com/coinsuite/coinwallet/walletdb"
 )
 
 // OutputSelectionPolicy describes the rules for selecting an output from the

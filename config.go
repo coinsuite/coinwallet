@@ -15,11 +15,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/btcsuite/btcutil"
-	"github.com/btcsuite/btcwallet/internal/cfgutil"
-	"github.com/btcsuite/btcwallet/internal/legacy/keystore"
-	"github.com/btcsuite/btcwallet/netparams"
-	"github.com/btcsuite/btcwallet/wallet"
+	"github.com/coinsuite/btcutil"
+	"github.com/coinsuite/coind/chaincfg"
+	"github.com/coinsuite/coind/wire"
+	"github.com/coinsuite/coinwallet/internal/cfgutil"
+	"github.com/coinsuite/coinwallet/internal/legacy/keystore"
+	"github.com/coinsuite/coinwallet/netparams"
+	"github.com/coinsuite/coinwallet/wallet"
 	flags "github.com/jessevdk/go-flags"
 	"github.com/lightninglabs/neutrino"
 )
@@ -48,6 +50,7 @@ var (
 type config struct {
 	// General application behavior
 	ConfigFile    *cfgutil.ExplicitString `short:"C" long:"configfile" description:"Path to configuration file"`
+	CoinConfig    string                  `long:"coind-config" description:"Coind configuration file"`
 	ShowVersion   bool                    `short:"V" long:"version" description:"Display version information and exit"`
 	Create        bool                    `long:"create" description:"Create the wallet if it does not exist"`
 	CreateTemp    bool                    `long:"createtemp" description:"Create a temporary simulation wallet (pass=password) in the data directory indicated; must call with --datadir"`
@@ -352,6 +355,26 @@ func loadConfig() (*config, []string, error) {
 		if !cfg.RPCCert.ExplicitlySet() {
 			cfg.RPCCert.Value = filepath.Join(cfg.AppDataDir.Value, "rpc.cert")
 		}
+	}
+
+	if cfg.CoinConfig != "" {
+		paramSet, err := chaincfg.ReadConfig(cfg.CoinConfig)
+		if err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			return nil, nil, err
+		}
+		chaincfg.Init(paramSet)
+
+		wireConfig, err := wire.ReadConfig(cfg.CoinConfig)
+		if err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			return nil, nil, err
+		}
+		wire.Init(wireConfig)
+	} else {
+		// Use default (bitcoin) coin settings
+		chaincfg.Init(chaincfg.DefaultParamSet)
+		wire.Init(wire.DefaultConfiguration)
 	}
 
 	// Choose the active network params based on the selected network.

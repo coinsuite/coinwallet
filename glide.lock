@@ -1,10 +1,10 @@
-hash: b1db66b8a8a0efd622b44de1299cf86ed6ea9333e73c1c9b1fcdaa9d589065fa
-updated: 2018-08-22T20:11:48.978564284-07:00
+hash: 5b0c3bcc9a11af73cfcc0971b38c0c10554c382283ccea8210a61e4882d8fd7c
+updated: 2018-09-19T14:35:10.714053+07:00
 imports:
 - name: github.com/aead/siphash
   version: 83563a290f60225eb120d724600b9690c3fb536f
 - name: github.com/btcsuite/btcd
-  version: d81d8877b8f327112e94e814937143a71d1692a7
+  version: f899737d7f2764dc13e4d01ff00108ec58f766a9
   subpackages:
   - addrmgr
   - blockchain
@@ -28,6 +28,15 @@ imports:
   - gcs
   - gcs/builder
   - hdkeychain
+- name: github.com/btcsuite/btcwallet
+  version: 64b5b448f5e6853a2d870f388504a7807bc951f1
+  subpackages:
+  - internal/zero
+  - snacl
+  - waddrmgr
+  - wallet/txauthor
+  - walletdb
+  - walletdb/bdb
 - name: github.com/btcsuite/go-socks
   version: 4720035b7bfd2a9bb130b1c184f8bbe41b6f0d0f
   subpackages:
@@ -44,6 +53,28 @@ imports:
   - ssh/terminal
 - name: github.com/btcsuite/websocket
   version: 31079b6807923eb23992c421b114992b95131b55
+- name: github.com/BurntSushi/toml
+  version: a368813c5e648fee92e5f6c30e3944ff9d5e8895
+- name: github.com/coinsuite/btcutil
+  version: 84a90c4086eccdf11494a3cb84fd19dbab2f09df
+  subpackages:
+  - base58
+  - bech32
+  - gcs
+  - gcs/builder
+  - hdkeychain
+- name: github.com/coinsuite/coind
+  version: 8a52aca9072e23dfabf563c94562945334a961f6
+  subpackages:
+  - blockchain
+  - btcec
+  - btcjson
+  - chaincfg
+  - chaincfg/chainhash
+  - database
+  - rpcclient
+  - txscript
+  - wire
 - name: github.com/coreos/bbolt
   version: 4f5275f4ebbf6fe7cb772de987fa96ee674460a7
 - name: github.com/davecgh/go-spew
