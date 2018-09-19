@@ -20,7 +20,7 @@ import (
 
 const defaultNet = "mainnet"
 
-var datadir = btcutil.AppDataDir("btcwallet", false)
+var datadir = btcutil.AppDataDir("coinwallet", false)
 
 // Flags.
 var opts = struct {

@@ -14,7 +14,7 @@ type Params struct {
 	RPCServerPort string
 }
 
-// MainNetParams contains parameters specific running btcwallet and
+// MainNetParams contains parameters specific running coinwallet and
 // btcd on the main network (wire.MainNet).
 var MainNetParams = Params{
 	Params:        chaincfg.GetMainNet(),
@@ -22,7 +22,7 @@ var MainNetParams = Params{
 	RPCServerPort: "8332",
 }
 
-// TestNet3Params contains parameters specific running btcwallet and
+// TestNet3Params contains parameters specific running coinwallet and
 // btcd on the test network (version 3) (wire.TestNet3).
 var TestNet3Params = Params{
 	Params:        chaincfg.GetTestNet(),

@@ -28,10 +28,10 @@ import (
 
 const (
 	defaultCAFilename       = "btcd.cert"
-	defaultConfigFilename   = "btcwallet.conf"
+	defaultConfigFilename   = "coinwallet.conf"
 	defaultLogLevel         = "info"
 	defaultLogDirname       = "logs"
-	defaultLogFilename      = "btcwallet.log"
+	defaultLogFilename      = "coinwallet.log"
 	defaultRPCMaxClients    = 10
 	defaultRPCMaxWebsockets = 25
 
@@ -40,7 +40,7 @@ const (
 
 var (
 	btcdDefaultCAFile  = filepath.Join(btcutil.AppDataDir("btcd", false), "rpc.cert")
-	defaultAppDataDir  = btcutil.AppDataDir("btcwallet", false)
+	defaultAppDataDir  = btcutil.AppDataDir("coinwallet", false)
 	defaultConfigFile  = filepath.Join(defaultAppDataDir, defaultConfigFilename)
 	defaultRPCKeyFile  = filepath.Join(defaultAppDataDir, "rpc.key")
 	defaultRPCCertFile = filepath.Join(defaultAppDataDir, "rpc.cert")
@@ -253,7 +253,7 @@ func parseAndSetDebugLevels(debugLevel string) error {
 //      3) Load configuration file overwriting defaults with any specified options
 //      4) Parse CLI options and overwrite/add any specified options
 //
-// The above results in btcwallet functioning properly without any config
+// The above results in coinwallet functioning properly without any config
 // settings while still allowing the user to override settings with config files
 // and command line options.  Command line options always take precedence.
 func loadConfig() (*config, []string, error) {
