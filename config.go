@@ -50,7 +50,7 @@ var (
 type config struct {
 	// General application behavior
 	ConfigFile    *cfgutil.ExplicitString `short:"C" long:"configfile" description:"Path to configuration file"`
-	CoinConfig    string                  `long:"coind-config" description:"Coind configuration file"`
+	CoinConfig    string                  `long:"coind-config" description:"Coind configuration file (defaults to btc)"`
 	ShowVersion   bool                    `short:"V" long:"version" description:"Display version information and exit"`
 	Create        bool                    `long:"create" description:"Create the wallet if it does not exist"`
 	CreateTemp    bool                    `long:"createtemp" description:"Create a temporary simulation wallet (pass=password) in the data directory indicated; must call with --datadir"`
