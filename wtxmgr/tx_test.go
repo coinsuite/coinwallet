@@ -48,6 +48,10 @@ var (
 	}
 )
 
+func init() {
+	chaincfg.Init(chaincfg.DefaultParamSet)
+}
+
 func testDB() (walletdb.DB, func(), error) {
 	tmpDir, err := ioutil.TempDir("", "wtxmgr_test")
 	if err != nil {
@@ -86,7 +90,7 @@ func testStore() (*Store, walletdb.DB, func(), error) {
 		if err != nil {
 			return err
 		}
-		s, err = Open(ns, &chaincfg.TestNet3Params)
+		s, err = Open(ns, chaincfg.GetTestNet())
 		return err
 	})
 
@@ -706,7 +710,7 @@ func TestCoinbases(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	coinbaseMaturity := int32(chaincfg.TestNet3Params.CoinbaseMaturity)
+	coinbaseMaturity := int32(chaincfg.GetTestNet().CoinbaseMaturity)
 
 	// Balance should be 0 if the coinbase is immature, 50 BTC at and beyond
 	// maturity.
@@ -1151,7 +1155,7 @@ func TestMoveMultipleToSameBlock(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	coinbaseMaturity := int32(chaincfg.TestNet3Params.CoinbaseMaturity)
+	coinbaseMaturity := int32(chaincfg.GetTestNet().CoinbaseMaturity)
 
 	// Mine both transactions in the block that matures the coinbase.
 	bMaturity := BlockMeta{
@@ -1483,7 +1487,7 @@ func testInsertMempoolDoubleSpendTx(t *testing.T, first bool) {
 	// Then, we'll confirm either the first or second spend, depending on
 	// the boolean passed, with a height deep enough that allows us to
 	// succesfully spend the coinbase output.
-	coinbaseMaturity := int32(chaincfg.TestNet3Params.CoinbaseMaturity)
+	coinbaseMaturity := int32(chaincfg.GetTestNet().CoinbaseMaturity)
 	bMaturity := BlockMeta{
 		Block: Block{Height: b100.Height + coinbaseMaturity},
 		Time:  time.Now(),
@@ -1672,7 +1676,7 @@ func TestInsertConfirmedDoubleSpendTx(t *testing.T) {
 
 	// Then, we'll insert the confirmed spend at a height deep enough that
 	// allows us to successfully spend the coinbase outputs.
-	coinbaseMaturity := int32(chaincfg.TestNet3Params.CoinbaseMaturity)
+	coinbaseMaturity := int32(chaincfg.GetTestNet().CoinbaseMaturity)
 	bMaturity := BlockMeta{
 		Block: Block{Height: b100.Height + coinbaseMaturity},
 		Time:  time.Now(),

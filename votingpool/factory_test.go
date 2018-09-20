@@ -180,7 +180,7 @@ func TstCreateSeries(t *testing.T, dbtx walletdb.ReadWriteTx, pool *Pool, defini
 }
 
 func TstCreateMasterKey(t *testing.T, seed []byte) *hdkeychain.ExtendedKey {
-	key, err := hdkeychain.NewMaster(seed, &chaincfg.MainNetParams)
+	key, err := hdkeychain.NewMaster(seed, chaincfg.GetMainNet())
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -348,11 +348,11 @@ func TstCreatePool(t *testing.T) (tearDownFunc func(), db walletdb.DB, pool *Poo
 		}
 		fastScrypt := &waddrmgr.ScryptOptions{N: 16, R: 8, P: 1}
 		err = waddrmgr.Create(addrmgrNs, seed, pubPassphrase, privPassphrase,
-			&chaincfg.MainNetParams, fastScrypt, time.Now())
+			chaincfg.GetMainNet(), fastScrypt, time.Now())
 		if err != nil {
 			return err
 		}
-		addrMgr, err = waddrmgr.Open(addrmgrNs, pubPassphrase, &chaincfg.MainNetParams)
+		addrMgr, err = waddrmgr.Open(addrmgrNs, pubPassphrase, chaincfg.GetMainNet())
 		if err != nil {
 			return err
 		}
@@ -381,7 +381,7 @@ func TstCreateTxStore(t *testing.T, db walletdb.DB) *wtxmgr.Store {
 		if err != nil {
 			return err
 		}
-		store, err = wtxmgr.Open(txmgrNs, &chaincfg.MainNetParams)
+		store, err = wtxmgr.Open(txmgrNs, chaincfg.GetMainNet())
 		return err
 	})
 	if err != nil {

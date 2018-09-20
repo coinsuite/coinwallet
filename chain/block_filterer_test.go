@@ -262,6 +262,10 @@ var Block100000 = wire.MsgBlock{
 	},
 }
 
+func init() {
+	chaincfg.Init(chaincfg.DefaultParamSet)
+}
+
 // TestBlockFiltererOneInOneOut tests the correctness of the BlockFilterer in
 // finding outpoints that spend from a "watched outpoint", even if they do not
 // send to an address controlled by the wallet.
@@ -282,7 +286,7 @@ func TestBlockFiltererOneInOneOut(t *testing.T) {
 	req := &chain.FilterBlocksRequest{
 		WatchedOutPoints: watchedOutPoints,
 	}
-	blockFilterer := chain.NewBlockFilterer(&chaincfg.SimNetParams, req)
+	blockFilterer := chain.NewBlockFilterer(chaincfg.GetSimNet(), req)
 
 	// Filter block 100000, which should find matches for the watched
 	// outpoints.

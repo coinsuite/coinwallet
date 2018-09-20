@@ -41,6 +41,10 @@ var (
 	fastScrypt     = &waddrmgr.ScryptOptions{N: 16, R: 8, P: 1}
 )
 
+func init() {
+	chaincfg.Init(chaincfg.DefaultParamSet)
+}
+
 func createWaddrmgr(ns walletdb.ReadWriteBucket, params *chaincfg.Params) (*waddrmgr.Manager, error) {
 	err := waddrmgr.Create(ns, seed, pubPassphrase, privPassphrase, params,
 		fastScrypt, time.Now())
@@ -75,7 +79,7 @@ func ExampleCreate() {
 	}
 
 	// Create the address manager.
-	mgr, err := createWaddrmgr(mgrNamespace, &chaincfg.MainNetParams)
+	mgr, err := createWaddrmgr(mgrNamespace, chaincfg.GetMainNet())
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -307,7 +311,7 @@ func exampleCreateDBAndMgr() (teardown func(), db walletdb.DB, mgr *waddrmgr.Man
 			return err
 		}
 		// Create the address manager
-		mgr, err = createWaddrmgr(addrmgrNs, &chaincfg.MainNetParams)
+		mgr, err = createWaddrmgr(addrmgrNs, chaincfg.GetMainNet())
 		return err
 	})
 	if err != nil {
@@ -358,7 +362,7 @@ func exampleCreateTxStore(ns walletdb.ReadWriteBucket) *wtxmgr.Store {
 	if err != nil {
 		panic(err)
 	}
-	s, err := wtxmgr.Open(ns, &chaincfg.MainNetParams)
+	s, err := wtxmgr.Open(ns, chaincfg.GetMainNet())
 	if err != nil {
 		panic(err)
 	}

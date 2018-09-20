@@ -207,6 +207,10 @@ var (
 	expectedInternalAddrs = expectedAddrs[5:]
 )
 
+func init() {
+	chaincfg.Init(chaincfg.DefaultParamSet)
+}
+
 // checkManagerError ensures the passed error is a ManagerError with an error
 // code that matches the passed  error code.
 func checkManagerError(t *testing.T, testName string, gotErr error, wantErrCode waddrmgr.ErrorCode) bool {
@@ -274,12 +278,12 @@ func setupManager(t *testing.T) (tearDownFunc func(), db walletdb.DB, mgr *waddr
 		}
 		err = waddrmgr.Create(
 			ns, seed, pubPassphrase, privPassphrase,
-			&chaincfg.MainNetParams, fastScrypt, time.Time{},
+			chaincfg.GetMainNet(), fastScrypt, time.Time{},
 		)
 		if err != nil {
 			return err
 		}
-		mgr, err = waddrmgr.Open(ns, pubPassphrase, &chaincfg.MainNetParams)
+		mgr, err = waddrmgr.Open(ns, pubPassphrase, chaincfg.GetMainNet())
 		return err
 	})
 	if err != nil {

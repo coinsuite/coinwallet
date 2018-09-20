@@ -1633,7 +1633,7 @@ func testWatchingOnly(tc *testContext) bool {
 	err = walletdb.View(db, func(tx walletdb.ReadTx) error {
 		ns := tx.ReadBucket(waddrmgrNamespaceKey)
 		var err error
-		mgr, err = waddrmgr.Open(ns, pubPassphrase, &chaincfg.MainNetParams)
+		mgr, err = waddrmgr.Open(ns, pubPassphrase, chaincfg.GetMainNet())
 		return err
 	})
 	if err != nil {
@@ -1672,7 +1672,7 @@ func testWatchingOnly(tc *testContext) bool {
 	err = walletdb.View(db, func(tx walletdb.ReadTx) error {
 		ns := tx.ReadBucket(waddrmgrNamespaceKey)
 		var err error
-		mgr, err = waddrmgr.Open(ns, pubPassphrase, &chaincfg.MainNetParams)
+		mgr, err = waddrmgr.Open(ns, pubPassphrase, chaincfg.GetMainNet())
 		return err
 	})
 	if err != nil {
@@ -1714,7 +1714,7 @@ func testSync(tc *testContext) bool {
 	}
 	blockStamp := waddrmgr.BlockStamp{
 		Height: 0,
-		Hash:   *chaincfg.MainNetParams.GenesisHash,
+		Hash:   *chaincfg.GetMainNet().GenesisHash,
 	}
 	gotBlockStamp := tc.rootManager.SyncedTo()
 	if gotBlockStamp != blockStamp {
@@ -1766,7 +1766,7 @@ func TestManager(t *testing.T) {
 	// returned.
 	err := walletdb.View(db, func(tx walletdb.ReadTx) error {
 		ns := tx.ReadBucket(waddrmgrNamespaceKey)
-		_, err := waddrmgr.Open(ns, pubPassphrase, &chaincfg.MainNetParams)
+		_, err := waddrmgr.Open(ns, pubPassphrase, chaincfg.GetMainNet())
 		return err
 	})
 	if !checkManagerError(t, "Open non-existant", err, waddrmgr.ErrNoExist) {
@@ -1782,12 +1782,12 @@ func TestManager(t *testing.T) {
 		}
 		err = waddrmgr.Create(
 			ns, seed, pubPassphrase, privPassphrase,
-			&chaincfg.MainNetParams, fastScrypt, time.Time{},
+			chaincfg.GetMainNet(), fastScrypt, time.Time{},
 		)
 		if err != nil {
 			return err
 		}
-		mgr, err = waddrmgr.Open(ns, pubPassphrase, &chaincfg.MainNetParams)
+		mgr, err = waddrmgr.Open(ns, pubPassphrase, chaincfg.GetMainNet())
 		return err
 	})
 	if err != nil {
@@ -1803,7 +1803,7 @@ func TestManager(t *testing.T) {
 	err = walletdb.Update(db, func(tx walletdb.ReadWriteTx) error {
 		ns := tx.ReadWriteBucket(waddrmgrNamespaceKey)
 		return waddrmgr.Create(ns, seed, pubPassphrase, privPassphrase,
-			&chaincfg.MainNetParams, fastScrypt, time.Time{})
+			chaincfg.GetMainNet(), fastScrypt, time.Time{})
 	})
 	if !checkManagerError(t, "Create existing", err, waddrmgr.ErrAlreadyExists) {
 		mgr.Close()
@@ -1832,7 +1832,7 @@ func TestManager(t *testing.T) {
 	*waddrmgr.TstLatestMgrVersion++
 	err = walletdb.View(db, func(tx walletdb.ReadTx) error {
 		ns := tx.ReadBucket(waddrmgrNamespaceKey)
-		_, err := waddrmgr.Open(ns, pubPassphrase, &chaincfg.MainNetParams)
+		_, err := waddrmgr.Open(ns, pubPassphrase, chaincfg.GetMainNet())
 		return err
 	})
 	if !checkManagerError(t, "Upgrade needed", err, waddrmgr.ErrUpgrade) {
@@ -1845,7 +1845,7 @@ func TestManager(t *testing.T) {
 	err = walletdb.View(db, func(tx walletdb.ReadTx) error {
 		ns := tx.ReadBucket(waddrmgrNamespaceKey)
 		var err error
-		mgr, err = waddrmgr.Open(ns, pubPassphrase, &chaincfg.MainNetParams)
+		mgr, err = waddrmgr.Open(ns, pubPassphrase, chaincfg.GetMainNet())
 		return err
 	})
 	if err != nil {
@@ -2002,14 +2002,14 @@ func TestScopedKeyManagerManagement(t *testing.T) {
 		}
 		err = waddrmgr.Create(
 			ns, seed, pubPassphrase, privPassphrase,
-			&chaincfg.MainNetParams, fastScrypt, time.Time{},
+			chaincfg.GetMainNet(), fastScrypt, time.Time{},
 		)
 		if err != nil {
 			return err
 		}
 
 		mgr, err = waddrmgr.Open(
-			ns, pubPassphrase, &chaincfg.MainNetParams,
+			ns, pubPassphrase, chaincfg.GetMainNet(),
 		)
 		if err != nil {
 			return err
@@ -2162,7 +2162,7 @@ func TestScopedKeyManagerManagement(t *testing.T) {
 	err = walletdb.View(db, func(tx walletdb.ReadTx) error {
 		ns := tx.ReadBucket(waddrmgrNamespaceKey)
 		var err error
-		mgr, err = waddrmgr.Open(ns, pubPassphrase, &chaincfg.MainNetParams)
+		mgr, err = waddrmgr.Open(ns, pubPassphrase, chaincfg.GetMainNet())
 		if err != nil {
 			return err
 		}
@@ -2253,14 +2253,14 @@ func TestRootHDKeyNeutering(t *testing.T) {
 		}
 		err = waddrmgr.Create(
 			ns, seed, pubPassphrase, privPassphrase,
-			&chaincfg.MainNetParams, fastScrypt, time.Time{},
+			chaincfg.GetMainNet(), fastScrypt, time.Time{},
 		)
 		if err != nil {
 			return err
 		}
 
 		mgr, err = waddrmgr.Open(
-			ns, pubPassphrase, &chaincfg.MainNetParams,
+			ns, pubPassphrase, chaincfg.GetMainNet(),
 		)
 		if err != nil {
 			return err
@@ -2347,14 +2347,14 @@ func TestNewRawAccount(t *testing.T) {
 		}
 		err = waddrmgr.Create(
 			ns, seed, pubPassphrase, privPassphrase,
-			&chaincfg.MainNetParams, fastScrypt, time.Time{},
+			chaincfg.GetMainNet(), fastScrypt, time.Time{},
 		)
 		if err != nil {
 			return err
 		}
 
 		mgr, err = waddrmgr.Open(
-			ns, pubPassphrase, &chaincfg.MainNetParams,
+			ns, pubPassphrase, chaincfg.GetMainNet(),
 		)
 		if err != nil {
 			return err
