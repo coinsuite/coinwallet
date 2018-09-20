@@ -2,7 +2,7 @@ coinwallet
 =========
 
 [![Build Status](https://travis-ci.org/coinsuite/coinwallet.png?branch=master)](https://travis-ci.org/coinsuite/coinwallet)
-[![Build status](https://ci.appveyor.com/api/projects/status/88nxvckdj8upqr36/branch/master?svg=true)](https://ci.appveyor.com/project/jrick/coinwallet/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/88nxvckdj8upqr36/branch/master?svg=true)](https://ci.appveyor.com/project/cbarraford/coinwallet/branch/master)
 
 coinwallet is a daemon handling bitcoin wallet functionality for a
 single user.  It acts as both an RPC client to coind and an RPC server
