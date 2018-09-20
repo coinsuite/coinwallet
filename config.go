@@ -380,12 +380,13 @@ func loadConfig() (*config, []string, error) {
 	// Choose the active network params based on the selected network.
 	// Multiple networks can't be selected simultaneously.
 	numNets := 0
+	activeNet = netparams.GetMainNet()
 	if cfg.TestNet3 {
-		activeNet = &netparams.TestNet3Params
+		activeNet = netparams.GetTestNet()
 		numNets++
 	}
 	if cfg.SimNet {
-		activeNet = &netparams.SimNetParams
+		activeNet = netparams.GetSimNet()
 		numNets++
 	}
 	if numNets > 1 {

@@ -83,11 +83,11 @@ func init() {
 	if opts.TestNet3 && opts.SimNet {
 		fatalf("Multiple bitcoin networks may not be used simultaneously")
 	}
-	var activeNet = &netparams.MainNetParams
+	var activeNet = netparams.GetMainNet()
 	if opts.TestNet3 {
-		activeNet = &netparams.TestNet3Params
+		activeNet = netparams.GetTestNet()
 	} else if opts.SimNet {
-		activeNet = &netparams.SimNetParams
+		activeNet = netparams.GetSimNet()
 	}
 
 	if opts.RPCConnect == "" {

@@ -6,4 +6,4 @@ package main
 
 import "github.com/coinsuite/coinwallet/netparams"
 
-var activeNet = &netparams.MainNetParams
+var activeNet *netparams.Params
